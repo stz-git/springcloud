@@ -8,6 +8,6 @@ eureka:
   client:
     #### 服务需要向Eureka注册的地址(不是Eureka的访问地址，是在Eureka中定义的地址service-url)
     service-url:
-      defaultZone: http://localhost:8080/eureka
+      defaultZone: http://localhost:8090/eureka,http://localhost:8080/eureka
     fetch-registry: true
     register-with-eureka: true
