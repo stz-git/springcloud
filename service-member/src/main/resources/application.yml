@@ -1,0 +1,13 @@
+server:
+  port: 8081
+#### 服务在Eureka中显示的实例名
+spring:
+  application:
+    name: app-itmayiedu-member
+eureka:
+  client:
+    #### 服务需要向Eureka注册的地址(不是Eureka的访问地址，是在Eureka中定义的地址service-url)
+    service-url:
+      defaultZone: http://localhost:8080/eureka
+    fetch-registry: true
+    register-with-eureka: true

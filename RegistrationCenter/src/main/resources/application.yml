@@ -1,0 +1,14 @@
+###Eureka启动端口号
+server:
+  port: 8080
+####Eureka启动的host地址
+eureka:
+  instance:
+    hostname: server1
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+    ####是否向Eureka中注册
+    register-with-eureka: false
+    ####是否从Eureka抓取服务
+    fetch-registry: false
