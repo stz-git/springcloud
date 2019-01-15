@@ -11,7 +11,7 @@
         <module>RegistrationCenter</module>
         <module>service-member</module>
         <module>service-order</module>
-        <module>interface</module>
+        <module>fiegn</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -31,4 +31,10 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+        </dependency>
+    </dependencies>
 </project>

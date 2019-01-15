@@ -1,6 +1,9 @@
 package com.itmayiedu.web;
 
 import com.itmayiedu.api.member.MemberAPI;
+import com.itmayiedu.feign.MemberFeign;
+import com.netflix.discovery.converters.Auto;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +16,9 @@ public class OrderContrller {
 
     @Autowired
     private MemberAPI memberAPI;
+
+    @Autowired
+    private MemberFeign memberFeign;
 
     @GetMapping("/order")
     public String index(String name){
@@ -31,9 +37,26 @@ public class OrderContrller {
      * @param name
      * @return
      */
-    @GetMapping("/order2")
-    public String member(String name){
-        String response = memberAPI.member(name);
+    @HystrixCommand(fallbackMethod = "memberFallback")
+    @GetMapping("/testHystrix")
+    public String member(String name) {
+        System.out.println("request....ThreadPool："+Thread.currentThread().getName());
+        String response = memberAPI.member(name);//Hystrix默认超时时间为1秒，此处熔断的原因是超时
         return response;
+    }
+
+    /**
+     * 用于服务降级
+     * @param name
+     * @return
+     */
+    public String memberFallback(String name){
+        return "Service degradation";
+    }
+
+    @GetMapping("/order3")
+    public String member(){
+        System.out.println("request....ThreadPool："+Thread.currentThread().getName());
+        return "success";
     }
 }

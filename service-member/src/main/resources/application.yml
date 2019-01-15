@@ -1,5 +1,6 @@
 server:
-  port: 8081
+#  port: 8081
+  port: 8083
 #### 服务在Eureka中显示的实例名
 spring:
   application:

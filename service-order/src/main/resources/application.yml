@@ -9,3 +9,37 @@ eureka:
       defaultZone: http://localhost:8090/eureka,http://localhost:8080/eureka
     register-with-eureka: true
     fetch-registry: true
+
+
+#feign两种超时处理：1.ribbon设置超时时间; 2.hystrix熔断机制/线程池隔离模式
+ribbon:
+## 读取可用资源的超时时间
+  ReadTimeout: 120000
+## 建立连接所用的超时时间
+  ConnectTimeout: 30000
+
+
+### hystrix start
+feign:
+  hystrix:
+    enabled: true
+
+## hystrix timeout
+hystrix:
+ command:
+   default:
+      execution:
+##        timeout:
+##          enabled: false
+        isolation:
+          thread:
+#          ### timeout
+            timeoutInMilliseconds: 2000
+      circuitBreaker:
+#        ### 10 times request
+        requestVolumeThreshold: 10
+#        ### error precent
+        errorThresholdPercentage: 50
+#        ### chaeck times 10s
+        sleepWindowInMilliseconds: 10000
+
