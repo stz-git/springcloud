@@ -1,16 +1,10 @@
 package com.itmayiedu.web;
 
-import com.itmayiedu.feign.MemberFeign;
-import com.netflix.discovery.converters.Auto;
+import com.itmayiedu.api.member.MemberAPI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @RestController
 public class OrderContrller {
@@ -18,7 +12,7 @@ public class OrderContrller {
     private RestTemplate restTemplate;
 
     @Autowired
-    private MemberFeign memberFeign;
+    private MemberAPI memberAPI;
 
     @GetMapping("/order")
     public String index(String name){
@@ -39,7 +33,7 @@ public class OrderContrller {
      */
     @GetMapping("/order2")
     public String member(String name){
-        String response = memberFeign.member(name);
+        String response = memberAPI.member(name);
         return response;
     }
 }

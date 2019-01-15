@@ -8,7 +8,7 @@ eureka:
     hostname: 127.0.0.1
   client:
     service-url:
-      defaultZone: http://${eureka.instance.hostname}:8080/eureka/
+      defaultZone: http://${eureka.instance.hostname}:8090/eureka/
     ####是否向Eureka中注册，单机的情况下注册中心本不需要注册，集群的情况下注册中心需要相互注册
     register-with-eureka: true
     ####是否从Eureka抓取服务
