@@ -5,11 +5,14 @@ import com.itmayiedu.feign.MemberFeign;
 import com.netflix.discovery.converters.Auto;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 @RestController
+@RefreshScope
 public class OrderContrller {
     @Autowired
     private RestTemplate restTemplate;
@@ -19,6 +22,9 @@ public class OrderContrller {
 
     @Autowired
     private MemberFeign memberFeign;
+
+    @Value("${user.sex}")
+    private String sex;
 
     @GetMapping("/order")
     public String index(String name){
@@ -57,6 +63,6 @@ public class OrderContrller {
     @GetMapping("/order3")
     public String member(){
         System.out.println("request....ThreadPool："+Thread.currentThread().getName());
-        return "success";
+        return "success:"+sex;
     }
 }

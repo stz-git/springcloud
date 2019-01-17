@@ -5,6 +5,13 @@ server:
 spring:
   application:
     name: app-itmayiedu-member
+  cloud:
+    config:
+      discovery:
+        service-id: config-server
+        enabled: true
+      profile: dev
+
 eureka:
   client:
     #### 服务需要向Eureka注册的地址(不是Eureka的访问地址，是在Eureka中定义的地址service-url)
@@ -12,3 +19,10 @@ eureka:
       defaultZone: http://localhost:8090/eureka,http://localhost:8080/eureka
     fetch-registry: true
     register-with-eureka: true
+
+###开启bus刷新
+management:
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh

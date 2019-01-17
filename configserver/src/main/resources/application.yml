@@ -1,0 +1,20 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/stz-git/springcloud-config.git
+          search-paths: config-center
+      label: master
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8090/eureka
+    fetch-registry: true
+    register-with-eureka: true
+

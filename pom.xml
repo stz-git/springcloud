@@ -12,6 +12,7 @@
         <module>service-member</module>
         <module>service-order</module>
         <module>fiegn</module>
+        <module>configserver</module>
     </modules>
     <packaging>pom</packaging>
 

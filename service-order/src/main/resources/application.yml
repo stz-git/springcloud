@@ -3,6 +3,14 @@ server:
 spring:
   application:
     name: app-itmayiedu-order
+### spring cloud config
+  cloud:
+    config:
+      discovery:
+        service-id: config-server
+        enabled: true
+      profile: dev
+
 eureka:
   client:
     service-url:
@@ -42,4 +50,12 @@ hystrix:
         errorThresholdPercentage: 50
 #        ### chaeck times 10s
         sleepWindowInMilliseconds: 10000
+
+
+###开启bus刷新
+management:
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh
 
