@@ -22,9 +22,9 @@ eureka:
 #feign两种超时处理：1.ribbon设置超时时间; 2.hystrix熔断机制/线程池隔离模式
 ribbon:
 ## 读取可用资源的超时时间
-  ReadTimeout: 120000
+  ReadTimeout: 1000
 ## 建立连接所用的超时时间
-  ConnectTimeout: 30000
+  ConnectTimeout: 2000
 
 
 ### hystrix start
@@ -42,7 +42,7 @@ hystrix:
         isolation:
           thread:
 #          ### timeout
-            timeoutInMilliseconds: 2000
+            timeoutInMilliseconds: 3000
       circuitBreaker:
 #        ### 10 times request
         requestVolumeThreshold: 10
